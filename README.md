@@ -14,7 +14,7 @@
 | 5 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -2.0 	| -2.0 	|
 | 6 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -3.0 	| -3.0 	| -3.0 	|
 
-##### Policy for Case 1:
+##### An Optimal Policy for Case 1:
 
 |   	| 0 	| 1 	| 2 	| 3  	| 4  	| 5  	| 6 	|
 |---	|---	|---	|---	|----	|----	|----	|---	|
@@ -25,6 +25,20 @@
 | 4 	| E 	| E 	| E 	| E  	| E  	| NE 	| N 	|
 | 5 	| E 	| E 	| E 	| E  	| NE 	| N  	| N 	|
 | 6 	| E 	| E 	| E 	| NE 	| N  	| N  	| N 	|
+
+##### Another Optimal Policy for Case 1:
+
+|   	| 0 	| 1 	| 2 	| 3  	| 4  	| 5  	| 6 	|
+|---	|---	|---	|---	|----	|----	|----	|---	|
+| 0 	| E 	| E 	| E 	| SE 	| S  	| S  	| S 	|
+| 1 	| E 	| E 	| E 	| E  	| SE 	| S  	| S 	|
+| 2 	| E 	| *SE*	| E 	| E  	| E  	| SE 	| S 	|
+| 3 	| E 	| E 	| E 	| E  	| E  	| E  	| + 	|
+| 4 	| E 	| E 	| E 	| E  	| E  	| NE 	| N 	|
+| 5 	| E 	| E 	| E 	| E  	| NE 	| N  	| N 	|
+| 6 	| E 	| E 	| E 	| NE 	| N  	| N  	| N 	|
+
+Notice the change in X1,Y2 from E to SE. Many permutations such as this can be created by modifying places such as this. In general this scenario exists when there is more than one equal neighbor with the optimal next value; in this case, there are 3 '-4' nodes next to the '-5' in question, and so picking any of the 3 of them is valid for an optimal solution. 
 
 ### Case 2: Weak Wind
 
