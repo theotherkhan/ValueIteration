@@ -1,17 +1,20 @@
 ## Hasan Khan, hk4cd | Zach Danz, zsd4yr
 ## Value Iteration
 from pandas import * # Makes 2D arrays render nice in terminal using DataFrame
+import numpy as np
+import matplotlib.pyplot as plt
 global marked
 global windFactor
 global FINAL_STATE
 
 ########################################## EDIT THESE ##########################
-windFactor = 1 # set to 0, 1, or 2
+windFactor = 2 # set to 0, 1, or 2
 northerlyWindPattern = (0,0,0,0,0,0,0) #describes where wind factor is active 
 southerlyWindPattern = (0,0,0,1,1,1,0) #note wind is given by the direction it is coming from
 easterlyWindPattern  = (0,0,0,0,0,0,0)
 westerlyWindPattern  = (0,0,0,0,0,0,0)
 FINAL_STATE = (3,6) # Y, X
+SHOW_PLOT = True
 ################################################################################
 
 global normalDirs 
@@ -48,6 +51,7 @@ def findUtility(currPos):
 	for rogers in neighbors:
 		if rogers != False:
 			allRewards.append(1*findUtility(rogers))
+
 	allRewards.append(board[x][y])
 		
 	bestReward = 0
@@ -166,6 +170,11 @@ def findNeighbors(board, currPos):
 	#n.append((x, y)) Dont need to do this, accouned for in findUtility
 	return n, dirs
 
+def drawPlot(numBoard):
+	cmap = plt.cm.Blues
+	img = plt.imshow(numBoard, cmap=cmap)
+	plt.show()
+
 ##########################################################
 ##########################################################
 
@@ -210,3 +219,6 @@ for i in range (0, len(board)):
 
 policy[FINAL_STATE[0]][FINAL_STATE[1]] = "+"
 print ("\n\t"+"~OPTIMAL POLICY ATTEMPT~"+"\n", DataFrame(policy))#.to_csv())
+
+if(SHOW_PLOT == True):
+	drawPlot(np.array(board))
