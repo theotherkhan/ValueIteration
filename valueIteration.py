@@ -11,13 +11,13 @@ northerlyWindPattern = (0,0,0,0,0,0,0) #describes where wind factor is active
 southerlyWindPattern = (0,0,0,0,1,1,1) #note wind is given by the direction it is coming from
 easternlyWindPattern = (0,0,0,0,0,0,0)
 westernlyWindPattern = (0,0,0,0,0,0,0)
-FINAL_STATE = (3,6)
+FINAL_STATE = (3,6) # Y, X
 ################################################################################
 
 DELTA = 10
 ## Board dimensions
-bLength = 7
-bWidth = 7
+bLength = 1 + 6
+bWidth = 1 + 6
 
 def findUtility(currPos):
 	x, y = currPos
@@ -86,7 +86,6 @@ def findNeighbors(board, currPos):
 	n = [] ## a list of coordinate tuples of eligible neighbors
 	dirs = []
 	
-	## Structure: [N, S, E, W, SE, SW, NE, NW]
 	addN = False
 	addE = False
 	addS = False
@@ -133,14 +132,14 @@ def findNeighbors(board, currPos):
 
 	if addS and addW: 
 		n.append((x-1, y+1)) ## Southwest
-		dirs.append("SE")
+		dirs.append("NE")
 	else: 
 		n.append(False)
 		dirs.append(".")
 
 	if addN and addE: 
 		n.append((x+1, y-1)) ## Northeast
-		dirs.append("NE")
+		dirs.append("SW")
 	else: 
 		n.append(False)
 		dirs.append(".")
@@ -160,7 +159,7 @@ def findNeighbors(board, currPos):
 ## Init board
 board = [[0] * bLength for i in range(bWidth)]
 ## board[row][col] indexing
-print "\n\t~"+"VALUE ITER INPUT~"+"\n",DataFrame(board)
+print "\n\t~"+"BASE ARRAY (BEFORE)~"+"\n",DataFrame(board)
 ## Run value iteration on loop 
 for i in range (0, DELTA):
 	
@@ -170,7 +169,7 @@ for i in range (0, DELTA):
 	#print ""
 	#print DataFrame(board)
 
-print "\n\t~"+"VALUE ITER OUTPUT~"+"\n",DataFrame(board)
+print "\n\t~"+"VALUE FUNCTION( (AFTER)~"+"\n",DataFrame(board)
 
 policy = [[0] * bLength for i in range(bWidth)]
 
