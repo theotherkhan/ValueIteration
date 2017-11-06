@@ -8,7 +8,7 @@ global FINAL_STATE
 ########################################## EDIT THESE ##########################
 windFactor = 1 # set to 0, 1, or 2
 northerlyWindPattern = (0,0,0,0,0,0,0) #describes where wind factor is active 
-southerlyWindPattern = (0,0,0,0,1,1,1) #note wind is given by the direction it is coming from
+southerlyWindPattern = (0,0,0,1,1,1,0) #note wind is given by the direction it is coming from
 easterlyWindPattern  = (0,0,0,0,0,0,0)
 westerlyWindPattern  = (0,0,0,0,0,0,0)
 FINAL_STATE = (3,6) # Y, X
@@ -210,4 +210,4 @@ for i in range (0, len(board)):
 		policy[i][j] = direction
 
 policy[FINAL_STATE[0]][FINAL_STATE[1]] = "+"
-print ("\n\t"+"~POLICY~"+"\n", DataFrame(policy))#.to_csv())
+print ("\n\t"+"~OPTIMAL POLICY ATTEMPT~"+"\n", DataFrame(policy))#.to_csv())
