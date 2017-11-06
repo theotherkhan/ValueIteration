@@ -19,7 +19,8 @@ SHOW_PLOT = True
 
 global normalDirs 
 global northFDirs
-normalDirs = {	"W":"W", 	"E":"E", 	"S":"S", 	"N":"N",	"SE":"SE", 	"NE":"NE", 	"SW":"SW", 	"NW":"NW"}
+normalDirs = {".":".", "W":"W", "E":"E", "S":"S", 
+	"N":"N","SE":"SE", "NE":"NE", "SW":"SW", "NW":"NW"}
 
 DELTA = 10
 ## Board dimensions
@@ -51,8 +52,6 @@ def findUtility(currPos):
 	for rogers in neighbors:
 		if rogers != False:
 			allRewards.append(1*findUtility(rogers))
-
-	allRewards.append(board[x][y])
 		
 	bestReward = 0
 	
@@ -75,7 +74,14 @@ def findNeighbors(board, currPos):
 	x=currPos[0]	
 	y=currPos[1]
 
+	windChangesYourStay = False
+
 	if windFactor !=0:
+		if (((northerlyWindPattern[x] == 1) != (southerlyWindPattern[x] == 1)) or
+			((easterlyWindPattern [y] == 1) != (westerlyWindPattern [y] == 1))):
+			print("\twind changes your stay position")
+			windChangesYourStay = True
+
 		if northerlyWindPattern[x] == 1: 	
 			if y-windFactor >= 0:
 				y = y-windFactor
@@ -98,6 +104,15 @@ def findNeighbors(board, currPos):
 	addE = False
 	addS = False
 	addW = False
+
+
+	if windChangesYourStay == True:
+		n.append((x, y)) ## North
+		desiredDir = "."
+		dirs.append(normalDirs[desiredDir])
+	else:
+		n.append(False)
+		dirs.append(".")
 
 	if y > 0 and x>=0 and y-1>=0:  
 		n.append((x, y-1)) ## North
@@ -171,9 +186,14 @@ def findNeighbors(board, currPos):
 	return n, dirs
 
 def drawPlot(numBoard):
-	cmap = plt.cm.Blues
-	img = plt.imshow(numBoard, cmap=cmap)
-	plt.show()
+	if SHOW_PLOT == True:
+		cmap = plt.cm.Blues
+		img = plt.imshow(numBoard, cmap=cmap)
+		plt.xlabel('X Coords')
+		plt.ylabel('Y Coords')
+		#fig = plt.figure()
+		plt.show()
+		#fig.savefig('plot.png', bbox_inches='tight')
 
 ##########################################################
 ##########################################################
