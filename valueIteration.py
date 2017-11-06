@@ -1,4 +1,4 @@
-## Hasan Khan, hk4cd | Zach Danz, zyds4
+## Hasan Khan, hk4cd | Zach Danz, zsd4yr
 ## Value Iteration
 from pandas import * # Makes 2D arrays render nice in terminal using DataFrame
 global marked
@@ -6,18 +6,18 @@ global windFactor
 global FINAL_STATE
 
 ########################################## EDIT THESE ##########################
-windFactor = 0 # set to 0, 1, or 2
+windFactor = 1 # set to 0, 1, or 2
 northerlyWindPattern = (0,0,0,0,0,0,0) #describes where wind factor is active 
 southerlyWindPattern = (0,0,0,0,1,1,1) #note wind is given by the direction it is coming from
-easternlyWindPattern = (0,0,0,0,0,0,0)
-westernlyWindPattern = (0,0,0,0,0,0,0)
+easterlyWindPattern  = (0,0,0,0,0,0,0)
+westerlyWindPattern  = (0,0,0,0,0,0,0)
 FINAL_STATE = (3,6) # Y, X
 ################################################################################
 
 DELTA = 10
 ## Board dimensions
-bLength = 1 + 6
-bWidth = 1 + 6
+bHeight = 7
+bWidth = 7
 
 def findUtility(currPos):
 	x, y = currPos
@@ -68,16 +68,16 @@ def findNeighbors(board, currPos):
 	y=currPos[1]
 
 	if windFactor !=0:
-		if southerlyWindPattern[x] == 1: 	
+		if northerlyWindPattern[x] == 1: 	
 			if y-windFactor >= 0:
 				y = y-windFactor
-		if northerlyWindPattern[x] == 1:
-			if y+windFactor < bLength:
+		if southerlyWindPattern[x] == 1:
+			if y+windFactor < bHeight:
 				y = y+windFactor
-		if easternlyWindPattern[y] == 1:
+		if easterlyWindPattern [y] == 1:
 			if x-windFactor >= 0:
 				x = x-windFactor
-		if westernlyWindPattern[y] == 1:
+		if westerlyWindPattern [y] == 1:
 			if x+windFactor < bWidth:
 				x = x+windFactor
 		#print "	\t~wind~, new curr position:", x, y
@@ -99,7 +99,7 @@ def findNeighbors(board, currPos):
 		n.append(False)
 		dirs.append(".")
 
-	if y+1 < bLength and x>=0 and y+1>=0:  
+	if y+1 < bWidth and x>=0 and y+1>=0:  
 		n.append((x, y+1)) ## South
 		dirs.append("E")
 		addS = True
@@ -107,7 +107,7 @@ def findNeighbors(board, currPos):
 		n.append(False)
 		dirs.append(".")
 
-	if x+1 < bWidth and x+1>=0 and y>=0:  
+	if x+1 < bHeight and x+1>=0 and y>=0:  
 		n.append((x+1, y)) ## East
 		dirs.append("S")
 		addE = True 
@@ -150,28 +150,38 @@ def findNeighbors(board, currPos):
 	else: 
 		n.append(False)
 		dirs.append(".")
+
+	
 	#n.append((x, y)) Dont need to do this, accouned for in findUtility
 	return n, dirs
 
 ##########################################################
 ##########################################################
 
+print("PROGRAM START")
+print("Wind Factor:", windFactor, 
+	"\n\tSoutherly along columns", [i for i, x in enumerate(southerlyWindPattern) if x == 1],
+	"\n\tNortherly along columns", [i for i, x in enumerate(northerlyWindPattern) if x == 1],
+	"\n\t Easterly along columns", [i for i, x in enumerate(easterlyWindPattern)  if x == 1],
+	"\n\t Westerly along columns", [i for i, x in enumerate(westerlyWindPattern)  if x == 1])
+
 ## Init board
-board = [[0] * bLength for i in range(bWidth)]
+board = [[0.0] * bWidth for i in range(bHeight)]
 ## board[row][col] indexing
-print "\n\t~"+"BASE ARRAY (BEFORE)~"+"\n",DataFrame(board)
+print ("\n\t~"+"BASE ARRAY (BEFORE)~"+"\n",DataFrame(board))
 ## Run value iteration on loop 
 for i in range (0, DELTA):
 	
-	marked = [[0] * bLength for i in range(bWidth)]
+	marked = [[0.0] * bWidth for i in range(bHeight)]
 	currPos = (0, 0)
 	findUtility(currPos)
 	#print ""
 	#print DataFrame(board)
 
-print "\n\t~"+"VALUE FUNCTION( (AFTER)~"+"\n",DataFrame(board)
 
-policy = [[0] * bLength for i in range(bWidth)]
+print ("\n\t~"+"VALUE FUNCTION( (AFTER)~"+"\n",DataFrame(board))#.to_csv())
+
+policy = [[""] * bWidth for i in range(bHeight)]
 
 for i in range (0, len(board)):
 	for j in range (0, len(board[0])):
@@ -188,4 +198,4 @@ for i in range (0, len(board)):
 		policy[i][j] = direction
 
 policy[FINAL_STATE[0]][FINAL_STATE[1]] = "+"
-print "\n\t"+"~POLICY~"+"\n",DataFrame(policy)
+print ("\n\t"+"~POLICY~"+"\n", DataFrame(policy))#.to_csv())
