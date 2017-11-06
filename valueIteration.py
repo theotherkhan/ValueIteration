@@ -17,7 +17,6 @@ FINAL_STATE = (3,6) # Y, X
 global normalDirs 
 global northFDirs
 normalDirs = {	"W":"W", 	"E":"E", 	"S":"S", 	"N":"N",	"SE":"SE", 	"NE":"NE", 	"SW":"SW", 	"NW":"NW"}
-northFDirs = {	"W":"SW", 	"E":"SE", 	"S":"x", 	"N":".", 	"SE":"x", 	"NE":"E", 	"SW":"x", 	"NW":"W"}
 
 DELTA = 10
 ## Board dimensions
