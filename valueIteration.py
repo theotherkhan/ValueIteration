@@ -14,6 +14,11 @@ westerlyWindPattern  = (0,0,0,0,0,0,0)
 FINAL_STATE = (3,6) # Y, X
 ################################################################################
 
+global normalDirs 
+global northFDirs
+normalDirs = {	"W":"W", 	"E":"E", 	"S":"S", 	"N":"N",	"SE":"SE", 	"NE":"NE", 	"SW":"SW", 	"NW":"NW"}
+northFDirs = {	"W":"SW", 	"E":"SE", 	"S":"x", 	"N":".", 	"SE":"x", 	"NE":"E", 	"SW":"x", 	"NW":"W"}
+
 DELTA = 10
 ## Board dimensions
 bHeight = 7
@@ -93,7 +98,8 @@ def findNeighbors(board, currPos):
 
 	if y > 0 and x>=0 and y-1>=0:  
 		n.append((x, y-1)) ## North
-		dirs.append("W")
+		desiredDir = "W"
+		dirs.append(normalDirs[desiredDir])
 		addN = True
 	else: 
 		n.append(False)
@@ -101,7 +107,8 @@ def findNeighbors(board, currPos):
 
 	if y+1 < bWidth and x>=0 and y+1>=0:  
 		n.append((x, y+1)) ## South
-		dirs.append("E")
+		desiredDir = "E"
+		dirs.append(normalDirs[desiredDir])
 		addS = True
 	else: 
 		n.append(False)
@@ -109,7 +116,8 @@ def findNeighbors(board, currPos):
 
 	if x+1 < bHeight and x+1>=0 and y>=0:  
 		n.append((x+1, y)) ## East
-		dirs.append("S")
+		desiredDir = "S"
+		dirs.append(normalDirs[desiredDir])
 		addE = True 
 	else: 
 		n.append(False)
@@ -117,7 +125,8 @@ def findNeighbors(board, currPos):
 
 	if x > 0 and x-1>=0 and y>=0:  
 		n.append((x-1, y)) ## West
-		dirs.append("N")
+		desiredDir = "N"
+		dirs.append(normalDirs[desiredDir])
 		addW = True
 	else: 
 		n.append(False)
@@ -125,32 +134,35 @@ def findNeighbors(board, currPos):
 
 	if addS and addE: 
 		n.append((x+1, y+1)) ## Southeast
-		dirs.append("SE")
+		desiredDir = "SE"
+		dirs.append(normalDirs[desiredDir])
 	else: 
 		n.append(False)
 		dirs.append(".")
 
 	if addS and addW: 
 		n.append((x-1, y+1)) ## Southwest
-		dirs.append("NE")
+		desiredDir = "NE"
+		dirs.append(normalDirs[desiredDir])
 	else: 
 		n.append(False)
 		dirs.append(".")
 
 	if addN and addE: 
 		n.append((x+1, y-1)) ## Northeast
-		dirs.append("SW")
+		desiredDir = "SE"
+		dirs.append(normalDirs[desiredDir])
 	else: 
 		n.append(False)
 		dirs.append(".")
 
 	if addN and addW: 
 		n.append((x-1, y-1)) ## Northwest
-		dirs.append("NW")
+		desiredDir = "NE"
+		dirs.append(normalDirs[desiredDir])
 	else: 
 		n.append(False)
 		dirs.append(".")
-
 	
 	#n.append((x, y)) Dont need to do this, accouned for in findUtility
 	return n, dirs
