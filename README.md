@@ -40,6 +40,8 @@
 
 Notice the change in X1,Y2 from E to SE. Many permutations such as this can be created by modifying places such as this. In general this scenario exists when there is more than one equal neighbor with the optimal next value; in this case, there are 3 '-4' nodes next to the '-5' in question, and so picking any of the 3 of them is valid for an optimal solution. 
 
+Because paths are derived at each cell by pointing towards the highest neighbor (for example, if the neighbors of a at a corner are '-5' are '-4', '-5', and '-5' then the '-4' will be pointed to); so if there is more than one equally highest neighbor then choosing either to point to is valid for an optimal solution.
+
 ### Case 2: Weak Wind
 
 ##### Value Function:
