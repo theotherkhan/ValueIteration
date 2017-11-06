@@ -6,10 +6,15 @@ global windFactor
 global FINAL_STATE
 
 ########################################## EDIT THESE ##########################
-windFactor = 2 # set to 0, 1, or 2
+windFactor = 1 # set to 0, 1, or 2
+northerlyWindPattern = (0,0,0,0,0,0,0) #describes where wind factor is active 
+southerlyWindPattern = (0,0,0,0,1,1,1) #note wind is given by the direction it is coming from
+easternlyWindPattern = (0,0,0,0,0,0,0)
+westernlyWindPattern = (0,0,0,0,0,0,0)
 FINAL_STATE = (3,6)
 ################################################################################
 
+DELTA = 10
 ## Board dimensions
 bLength = 7
 bWidth = 7
@@ -86,10 +91,21 @@ def findNeighbors(board, currPos):
 	x=currPos[0]	
 	y=currPos[1]
 
-	if windFactor !=0 and x in range (3,6): 	
-		if y-windFactor >= 0:
-			y = y-windFactor
-			#print "	\t~wind~, new curr position:", x, y
+	if windFactor !=0:
+		if southerlyWindPattern[x] == 1: 	
+			if y-windFactor >= 0:
+				y = y-windFactor
+		if northerlyWindPattern[x] == 1:
+			if y+windFactor < bLength:
+				y = y+windFactor
+		if easternlyWindPattern[y] == 1:
+			if x-windFactor >= 0:
+				x = x-windFactor
+		if westernlyWindPattern[y] == 1:
+			if x+windFactor < bWidth:
+				x = x+windFactor
+		#print "	\t~wind~, new curr position:", x, y
+		
 
 	n = [] ## a list of coordinate tuples of eligible neighbors
 	dirs = []
@@ -170,7 +186,7 @@ board = [[0] * bLength for i in range(bWidth)]
 ## board[row][col] indexing
 print "\n\t~"+"VALUE ITER INPUT~"+"\n",DataFrame(board)
 ## Run value iteration on loop 
-for i in range (0, 10):
+for i in range (0, DELTA):
 	
 	marked = [[0] * bLength for i in range(bWidth)]
 	currPos = (0, 0)
