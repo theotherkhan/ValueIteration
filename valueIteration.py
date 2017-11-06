@@ -171,11 +171,11 @@ def findNeighbors(board, currPos):
 ##########################################################
 
 print("PROGRAM START")
-print("Wind Factor:", windFactor, 
+print("\tWind Factor:", windFactor, 
 	"\n\tSoutherly along columns", [i for i, x in enumerate(southerlyWindPattern) if x == 1],
 	"\n\tNortherly along columns", [i for i, x in enumerate(northerlyWindPattern) if x == 1],
-	"\n\t Easterly along columns", [i for i, x in enumerate(easterlyWindPattern)  if x == 1],
-	"\n\t Westerly along columns", [i for i, x in enumerate(westerlyWindPattern)  if x == 1])
+	"\n\tEasterly  along columns", [i for i, x in enumerate(easterlyWindPattern)  if x == 1],
+	"\n\tWesterly  along columns", [i for i, x in enumerate(westerlyWindPattern)  if x == 1])
 
 ## Init board
 board = [[0.0] * bWidth for i in range(bHeight)]
