@@ -6,7 +6,7 @@ global windFactor
 global FINAL_STATE
 
 ########################################## EDIT THESE ##########################
-windFactor = 1 # set to 0, 1, or 2
+windFactor = 0 # set to 0, 1, or 2
 northerlyWindPattern = (0,0,0,0,0,0,0) #describes where wind factor is active 
 southerlyWindPattern = (0,0,0,0,1,1,1) #note wind is given by the direction it is coming from
 easternlyWindPattern = (0,0,0,0,0,0,0)
@@ -36,47 +36,23 @@ def findUtility(currPos):
 		board[x][y] = 0
 		return board[x][y]
 
-	neighbors, ways = findNeighbors(board, currPos)
 	#print "Neighbors of this pos: ", neighbors
 	allRewards = []
 
-	
-	##Finding utilities of nieghbors
-	## [N, S, E, W, NE, NW, SE, SW]
-		
-	if (neighbors[0] != False):
-		allRewards.append(1*findUtility(neighbors[0]))
-	
-	if (neighbors[1] != False):
-		allRewards.append(1*findUtility(neighbors[1]))
-	
-	if (neighbors[2] != False):	
-		allRewards.append(1*findUtility(neighbors[2]))
-	
-	if (neighbors[3] != False):
-		allRewards.append(1*findUtility(neighbors[3]))	
-	
-	if (neighbors[4] != False):
-		allRewards.append(1*findUtility(neighbors[4]))
-	
-	if (neighbors[5] != False):
-		allRewards.append(1*findUtility(neighbors[5]))
-	
-	if (neighbors[6] != False):
-		allRewards.append(1*findUtility(neighbors[6]))
+	neighbors, ways = findNeighbors(board, currPos)
 
-	if (neighbors[7] != False):
-		allRewards.append(1*findUtility(neighbors[7]))
-	
+	for rogers in neighbors:
+		if rogers != False:
+			allRewards.append(1*findUtility(rogers))
 	allRewards.append(board[x][y])
 		
 	bestReward = 0
 	
-	if len(allRewards)!=0:
-		#print "allRewards of ", currPos, ":", allRewards
-		bestReward = max(allRewards)	
+	if len(allRewards)>0:
+		bestReward = max(allRewards)
 
-	utility = currentReward+(1*bestReward)
+	PROB = 1.0
+	utility = currentReward+(PROB*bestReward)
 
 	#print "\tUtility of ", currPos, " is :", utility
 
@@ -126,7 +102,7 @@ def findNeighbors(board, currPos):
 
 	if y+1 < bLength and x>=0 and y+1>=0:  
 		n.append((x, y+1)) ## South
-		dirs.append("W")
+		dirs.append("E")
 		addS = True
 	else: 
 		n.append(False)
