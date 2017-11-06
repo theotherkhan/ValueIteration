@@ -32,7 +32,7 @@
 |---	|---	|---	|---	|----	|----	|----	|---	|
 | 0 	| E 	| E 	| E 	| SE 	| S  	| S  	| S 	|
 | 1 	| E 	| E 	| E 	| E  	| SE 	| S  	| S 	|
-| 2 	| E 	| *SE*	| E 	| E  	| E  	| SE 	| S 	|
+| 2 	| E 	| `SE`	| E 	| E  	| E  	| SE 	| S 	|
 | 3 	| E 	| E 	| E 	| E  	| E  	| E  	| + 	|
 | 4 	| E 	| E 	| E 	| E  	| E  	| NE 	| N 	|
 | 5 	| E 	| E 	| E 	| E  	| NE 	| N  	| N 	|
