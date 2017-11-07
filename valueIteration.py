@@ -8,12 +8,12 @@ global windFactor
 global FINAL_STATE
 
 ########################################## EDIT THESE ##########################
-windFactor = 2 # set to 0, 1, or 2
+windFactor = 1 # set to 0, 1, or 2
 northerlyWindPattern = (0,0,0,0,0,0,0) #describes where wind factor is active 
 southerlyWindPattern = (0,0,0,1,1,1,0) #note wind is given by the direction it is coming from
 easterlyWindPattern  = (0,0,0,0,0,0,0)
 westerlyWindPattern  = (0,0,0,0,0,0,0)
-FINAL_STATE = (3,6) # Y, X
+FINAL_STATE = (3,6) # Y, X -- row,col
 SHOW_PLOT = True
 ################################################################################
 
@@ -28,21 +28,22 @@ bHeight = 7
 bWidth = 7
 
 def findUtility(currPos):
-	x, y = currPos
+	print (currPos)
+	row,col = currPos
 	#print " \n CURRENT POSITION: (",x,",",y,"), CURR VALUE: ", board[x][y] 
 	
-	if marked[x][y] == 1:
+	if marked[row][col] == 1:
 		#print "		Already marked this position"
-		return board[x][y]
+		return board[row][col]
 
-	marked[x][y] = 1
+	marked[row][col] = 1
 	currentReward = -1
 
 	if currPos == FINAL_STATE:
 		#print "HIT FINAL STATE!*******************************"
 		currentReward = 0
-		board[x][y] = 0
-		return board[x][y]
+		board[row][col] = 0
+		return board[row][col]
 
 	#print "Neighbors of this pos: ", neighbors
 	allRewards = []
@@ -50,7 +51,8 @@ def findUtility(currPos):
 	neighbors, ways = findNeighbors(board, currPos)
 
 	for rogers in neighbors:
-		if rogers != False:
+		if rogers != False :
+			print("rogers not false:", rogers)
 			allRewards.append(1*findUtility(rogers))
 		
 	bestReward = 0
@@ -62,38 +64,38 @@ def findUtility(currPos):
 	utility = currentReward+(PROB*bestReward)
 
 	#print "\tUtility of ", currPos, " is :", utility
+	print ("utility:", utility)
+	board[row][col] = utility
 
-	board[x][y] = utility
-
-	return board[x][y]	
+	return board[row][col]	
 
 
 def findNeighbors(board, currPos):
 	### Finds and returns all eligible neighbors of the current position
 
-	x=currPos[0]	
-	y=currPos[1]
+	row, col = currPos
 
 	windChangesYourStay = False
 
 	if windFactor !=0:
-		if (((northerlyWindPattern[x] == 1) != (southerlyWindPattern[x] == 1)) or
-			((easterlyWindPattern [y] == 1) != (westerlyWindPattern [y] == 1))):
+		if (((northerlyWindPattern[col] == 1) != (southerlyWindPattern[col] == 1)) or
+			((easterlyWindPattern [row] == 1) != (westerlyWindPattern [row] == 1))):
 			print("\twind changes your stay position")
 			windChangesYourStay = True
 
-		if northerlyWindPattern[x] == 1: 	
-			if y-windFactor >= 0:
-				y = y-windFactor
-		if southerlyWindPattern[x] == 1:
-			if y+windFactor < bHeight:
-				y = y+windFactor
-		if easterlyWindPattern [y] == 1:
-			if x-windFactor >= 0:
-				x = x-windFactor
-		if westerlyWindPattern [y] == 1:
-			if x+windFactor < bWidth:
-				x = x+windFactor
+		if northerlyWindPattern[col] == 1: 	
+			if row+windFactor <= bHeight-1:
+				row = row+windFactor
+		if southerlyWindPattern[col] == 1:
+			if row-windFactor >= 0:
+				row = row-windFactor
+		
+		if easterlyWindPattern [row] == 1:
+			if col-windFactor >= 0:
+				col = col-windFactor
+		if westerlyWindPattern [row] == 1:
+			if col+windFactor <= bWidth-1:
+				col = col+windFactor
 		#print "	\t~wind~, new curr position:", x, y
 		
 
@@ -107,80 +109,59 @@ def findNeighbors(board, currPos):
 
 
 	if windChangesYourStay == True:
-		n.append((x, y)) ## North
+		n.append((row, col)) #self
 		desiredDir = "."
 		dirs.append(normalDirs[desiredDir])
-	else:
-		n.append(False)
-		dirs.append(".")
+	
 
-	if y > 0 and x>=0 and y-1>=0:  
-		n.append((x, y-1)) ## North
-		desiredDir = "W"
-		dirs.append(normalDirs[desiredDir])
-		addN = True
-	else: 
-		n.append(False)
-		dirs.append(".")
-
-	if y+1 < bWidth and x>=0 and y+1>=0:  
-		n.append((x, y+1)) ## South
-		desiredDir = "E"
-		dirs.append(normalDirs[desiredDir])
-		addS = True
-	else: 
-		n.append(False)
-		dirs.append(".")
-
-	if x+1 < bHeight and x+1>=0 and y>=0:  
-		n.append((x+1, y)) ## East
-		desiredDir = "S"
-		dirs.append(normalDirs[desiredDir])
-		addE = True 
-	else: 
-		n.append(False)
-		dirs.append(".")
-
-	if x > 0 and x-1>=0 and y>=0:  
-		n.append((x-1, y)) ## West
+	if row > 0: #North
+		n.append((row-1, col))
 		desiredDir = "N"
 		dirs.append(normalDirs[desiredDir])
+		addN = True
+	
+
+	if row < bHeight-1: #South
+		n.append((row+1, col))
+		desiredDir = "S"
+		dirs.append(normalDirs[desiredDir])
+		addS = True
+	
+
+	if col > 0: #West
+		n.append((row, col-1))
+		desiredDir = "W"
+		dirs.append(normalDirs[desiredDir])
 		addW = True
-	else: 
-		n.append(False)
-		dirs.append(".")
+	
 
-	if addS and addE: 
-		n.append((x+1, y+1)) ## Southeast
-		desiredDir = "SE"
+	if col < bWidth-1: #East
+		n.append((row, col+1))
+		desiredDir = "E"
 		dirs.append(normalDirs[desiredDir])
-	else: 
-		n.append(False)
-		dirs.append(".")
+		addE = True
+	
 
-	if addS and addW: 
-		n.append((x-1, y+1)) ## Southwest
+	if addN and addE: #Northeast
+		n.append((row-1, col+1))
 		desiredDir = "NE"
 		dirs.append(normalDirs[desiredDir])
-	else: 
-		n.append(False)
-		dirs.append(".")
-
-	if addN and addE: 
-		n.append((x+1, y-1)) ## Northeast
+	
+	if addS and addE: #Southeast
+		n.append((row+1, col+1))
 		desiredDir = "SE"
 		dirs.append(normalDirs[desiredDir])
-	else: 
-		n.append(False)
-		dirs.append(".")
+	
 
-	if addN and addW: 
-		n.append((x-1, y-1)) ## Northwest
-		desiredDir = "NE"
+	if addN and addW: #Northwest
+		n.append((row-1, col-1))
+		desiredDir = "NW"
 		dirs.append(normalDirs[desiredDir])
-	else: 
-		n.append(False)
-		dirs.append(".")
+	
+	if addS and addW: #Southwest
+		n.append((row+1, col-1))
+		desiredDir = "SW"
+		dirs.append(normalDirs[desiredDir])
 	
 	#n.append((x, y)) Dont need to do this, accouned for in findUtility
 	return n, dirs
@@ -210,10 +191,9 @@ board = [[0.0] * bWidth for i in range(bHeight)]
 ## board[row][col] indexing
 print ("\n\t~"+"BASE ARRAY (BEFORE)~"+"\n",DataFrame(board))
 ## Run value iteration on loop 
-for i in range (0, DELTA):
-	
+for i in range (0, DELTA):	
 	marked = [[0.0] * bWidth for i in range(bHeight)]
-	currPos = (0, 0)
+	currPos = (0, 0) #stored Y, X
 	findUtility(currPos)
 	#print ""
 	#print DataFrame(board)
