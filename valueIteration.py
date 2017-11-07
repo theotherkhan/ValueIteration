@@ -28,7 +28,6 @@ bHeight = 7
 bWidth = 7
 
 def findUtility(currPos):
-	print (currPos)
 	row,col = currPos
 	#print " \n CURRENT POSITION: (",x,",",y,"), CURR VALUE: ", board[x][y] 
 	
@@ -52,7 +51,6 @@ def findUtility(currPos):
 
 	for rogers in neighbors:
 		if rogers != False :
-			print("rogers not false:", rogers)
 			allRewards.append(1*findUtility(rogers))
 		
 	bestReward = 0
@@ -64,7 +62,6 @@ def findUtility(currPos):
 	utility = currentReward+(PROB*bestReward)
 
 	#print "\tUtility of ", currPos, " is :", utility
-	print ("utility:", utility)
 	board[row][col] = utility
 
 	return board[row][col]	
@@ -80,24 +77,16 @@ def findNeighbors(board, currPos):
 	if windFactor !=0:
 		if (((northerlyWindPattern[col] == 1) != (southerlyWindPattern[col] == 1)) or
 			((easterlyWindPattern [row] == 1) != (westerlyWindPattern [row] == 1))):
-			print("\twind changes your stay position")
 			windChangesYourStay = True
 
-		if northerlyWindPattern[col] == 1: 	
-			if row+windFactor <= bHeight-1:
-				row = row+windFactor
+		if northerlyWindPattern[col] == 1: 
+			row = min(bHeight-1, ow+windFactor)	
 		if southerlyWindPattern[col] == 1:
-			if row-windFactor >= 0:
-				row = row-windFactor
-		
+			row = max(0, row-windFactor)	
 		if easterlyWindPattern [row] == 1:
-			if col-windFactor >= 0:
-				col = col-windFactor
+			col = max(0, col-windFactor)
 		if westerlyWindPattern [row] == 1:
-			if col+windFactor <= bWidth-1:
-				col = col+windFactor
-		#print "	\t~wind~, new curr position:", x, y
-		
+			col = min(bWidth-1, col+windFactor)		
 
 	n = [] ## a list of coordinate tuples of eligible neighbors
 	dirs = []
