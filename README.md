@@ -1,5 +1,8 @@
 # ValueIteration
 
+##### Some General Notes:
+* for policies, the actions to be taken are given in cardinal directions N, S, E, W, NE, SE, NW, and SW. A period . means stay. 
+
 ### Case 1: Windless
 
 ##### Value Function:
@@ -13,6 +16,10 @@
 | 04 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -1.0 	| -1.0 	|
 | 05 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -2.0 	| -2.0 	|
 | 06 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -3.0 	| -3.0 	| -3.0 	|
+
+##### Gradiant Visualization of the Value Function:
+
+![alt text](Figure_1.png)
 
 ##### An Optimal Policy for Case 1:
 
@@ -46,10 +53,27 @@ Because paths are derived at each cell by pointing towards the highest neighbor 
 
 ##### Value Function:
 
+|   	| 00    | 01    | 02    | 03    | 04    | 05    | 06    |
+|---	|------	|------	|------	|------	|------	|------	|------	|
+| 00 	| -6.0 	| -6.0 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -3.0 	|
+| 01 	| -6.0 	| -5.0 	| -5.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	|
+| 02 	| -6.0 	| -5.0 	| -4.0 	| -4.0 	| -3.0 	| -2.0 	| -1.0 	|
+| 03 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -1.0 	| 0.0  	|
+| 04 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -1.0 	| -1.0 	|
+| 05 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -1.0 	| -2.0 	|
+| 06 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -2.0 	| -2.0 	|
 
 ##### Policy for Case 2:
 
-
+|   	| 00    | 01    | 02    | 03    | 04    | 05    | 06    |
+|---	|------	|------	|------	|------	|------	|------	|------	|
+| 00 	| SE	| SE 	| SE 	| SE 	| SE	| SE 	| S 	|
+| 01 	| E 	| SE 	| SE 	| SE 	| SE 	| SE 	| S 	|
+| 02 	| E 	| E 	| SE 	| SE 	| SE 	| SE 	| S 	|
+| 03 	| E 	| E 	| E 	| SE 	| SE	| E 	| 0.0  	|
+| 04 	| E 	| E 	| E 	| SE 	| E 	| NE 	| N 	|
+| 05 	| E 	| E 	| E 	| SE 	| E 	| NE 	| N 	|
+| 06 	| E 	| E 	| E 	| SE 	| NE	| . 	| N 	|
 
 ### Changing the Wind Factor
 
