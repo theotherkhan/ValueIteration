@@ -8,7 +8,7 @@ global windFactor
 global FINAL_STATE
 
 ########################################## EDIT THESE ##########################
-windFactor = 1 # set to 0, 1, or 2
+windFactor = 2 # set to 0, 1, or 2
 northerlyWindPattern = (0,0,0,0,0,0,0) #describes where wind factor is active 
 southerlyWindPattern = (0,0,0,1,1,1,0) #note wind is given by the direction it is coming from
 easterlyWindPattern  = (0,0,0,0,0,0,0)
@@ -79,16 +79,7 @@ def findNeighbors(board, currPos):
 	if windFactor !=0:
 		if (((northerlyWindPattern[col] == 1) != (southerlyWindPattern[col] == 1)) or
 			((easterlyWindPattern [row] == 1) != (westerlyWindPattern [row] == 1))):
-			windChangesYourStay = True
-
-		if northerlyWindPattern[col] == 1: 
-			row = min(bHeight-1, ow+windFactor)	
-		if southerlyWindPattern[col] == 1:
-			row = max(0, row-windFactor)	
-		if easterlyWindPattern [row] == 1:
-			col = max(0, col-windFactor)
-		if westerlyWindPattern [row] == 1:
-			col = min(bWidth-1, col+windFactor)		
+			windChangesYourStay = True	
 
 	n = [] ## a list of coordinate tuples of eligible neighbors
 	dirs = []
@@ -153,9 +144,29 @@ def findNeighbors(board, currPos):
 		n.append((row+1, col-1))
 		desiredDir = "SW"
 		dirs.append(normalDirs[desiredDir])
+
+	neigh = []
+
+	if(windFactor !=0):
+		for check in n:
+			row2,col2 = check
+
+			if northerlyWindPattern[col2] == 1: 
+				row2 = min(bHeight-1, row2+windFactor)	
+			if southerlyWindPattern[col2] == 1:
+				row2 = max(0, row2-windFactor)	
+			if easterlyWindPattern [row2] == 1:
+				col2 = max(0, col2-windFactor)
+			if westerlyWindPattern [row2] == 1:
+				col2 = min(bWidth-1, col2+windFactor)
+			
+			#print(check,"became",(row2,col2))
+			neigh.append((row2,col2))
+	else:
+		neigh = n	
 	
 	#n.append((x, y)) Dont need to do this, accouned for in findUtility
-	return n, dirs
+	return neigh, dirs
 
 def drawPlot(numBoard):
 	if SHOW_PLOT == True:
@@ -182,10 +193,13 @@ board = [[0.0] * bWidth for i in range(bHeight)]
 ## board[row][col] indexing
 print ("\n\t~"+"BASE ARRAY (BEFORE)~"+"\n",DataFrame(board))
 ## Run value iteration on loop 
-for i in range (0, DELTA):	
-	marked = [[0.0] * bWidth for i in range(bHeight)]
-	currPos = (0, 0) #stored Y, X
-	findUtility(currPos)
+#for i in range (0, DELTA):	
+
+for i in range(0, bHeight):
+	for j in range(0, bWidth):
+		marked = [[0.0] * bWidth for i in range(bHeight)]
+		currPos = (i,j) #stored Y, X
+		findUtility(currPos)
 
 
 print ("\n\t~"+"VALUE FUNCTION( (AFTER)~"+"\n",DataFrame(board).to_csv())
