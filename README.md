@@ -33,13 +33,13 @@
 | 05 	| E 	| E 	| E 	| E  	| NE 	| N  	| N 	|
 | 06 	| E 	| E 	| E 	| NE 	| N  	| N  	| N 	|
 
-##### 3,0 to 3,6 for Case 1:
+##### Path from 3,0 to 3,6 for Case 1:
 
-* E,  E, E,  E, E, E, .
+* ((3,0):E), ((3,1):E), ((3:2):E), ((3,3):E), ((3,4):E), ((3,5):E), ((3,6):.)
 
-##### Another 3,0 to 3,6 for Case 1:
+##### Another Path from 3,0 to 3,6 for Case 1:
 
-* NE, E, SE, E, E, E, .
+* ((3,0):NE), ((2,1):E), ((2:2):SE), ((3,3):E), ((3,4):E), ((3,5):E), ((3,6):.)
 
 ### Case II: Weak Wind
 
@@ -69,15 +69,15 @@
 | 3 	| E 	| E 	| SE 	| SE 	| SE 	| E 	| .  	|
 | 4 	| E 	| E 	| E 	| E 	| SE 	| NE 	| N 	|
 | 5 	| E 	| E 	| E 	| E 	| E 	| NE 	| N 	|
-| 6 	| E 	| E 	| E 	| E 	| NE 	| . 	| N 	|
+| 6 	| E 	| E 	| E 	| E 	| NE 	| NE 	| N 	|
 
 ##### 3,0 to 3,6 for Case 2:
 
-* E,  E,  SE, SE, SE, E, .
+* ((3,0):E), ((3,1):E), ((3:2):SE), ((3,3):SE), ((3,4):SE), ((3,5):E), ((3,6):.)
 
 ##### Another 3,0 to 3,6 for Case 2:
 
-* NE, SE, SE, SE, SE, E, .
+* ((3,0):NE), ((2,1):SE), ((3:2):SE), ((3,3):SE), ((3,4):SE), ((3,5):E), ((3,6):.)
 
 ### Case III: Strong Wind
 
@@ -111,7 +111,7 @@
 
 ##### 3,0 to 3,6 for Case 3:
 
-* SE, SE, SE, SE, SE, SE
+* ((3,0):SE), ((4,1):SE), ((5:2):SE), ((4,3):SE), ((3,4):SE), ((2,5):SE), ((3,6):.)
 
 ### Changing the Wind Factor
 
