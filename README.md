@@ -33,21 +33,13 @@
 | 05 	| E 	| E 	| E 	| E  	| NE 	| N  	| N 	|
 | 06 	| E 	| E 	| E 	| NE 	| N  	| N  	| N 	|
 
-##### Another Optimal Policy for Case 1:
+##### 3,0 to 3,6 for Case 1:
 
-|   	| 00 	| 01 	| 02 	| 03  	| 04  	| 05  	| 06 	|
-|---	|---	|---	|---	|----	|----	|----	|---	|
-| 00 	| E 	| E 	| E 	| SE 	| S  	| S  	| S 	|
-| 01 	| E 	| E 	| E 	| E  	| SE 	| S  	| S 	|
-| 02 	| E 	| `SE`	| E 	| E  	| E  	| SE 	| S 	|
-| 03 	| E 	| E 	| E 	| E  	| E  	| E  	| . 	|
-| 04 	| E 	| E 	| E 	| E  	| E  	| NE 	| N 	|
-| 05 	| E 	| E 	| E 	| E  	| NE 	| N  	| N 	|
-| 06 	| E 	| E 	| E 	| NE 	| N  	| N  	| N 	|
+* E,  E, E,  E, E, E, .
 
-Notice the change in X1,Y2 from E to SE. Many permutations such as this can be created by modifying places such as this. In general this scenario exists when there is more than one equal neighbor with the optimal next value; in this case, there are 3 '-4' nodes next to the '-5' in question, and so picking any of the 3 of them is valid for an optimal solution. 
+##### Another 3,0 to 3,6 for Case 1:
 
-Because paths are derived at each cell by pointing towards the highest neighbor (for example, if the neighbors of a at a corner are '-5' are '-4', '-5', and '-5' then the '-4' will be pointed to); so if there is more than one equally highest neighbor then choosing either to point to is valid for an optimal solution.
+* NE, E, SE, E, E, E, .
 
 ### Case II: Weak Wind
 
@@ -73,11 +65,19 @@ Because paths are derived at each cell by pointing towards the highest neighbor 
 |---	|------	|------	|------	|------	|------	|------	|------	|
 | 0 	| SE	| SE 	| SE 	| SE 	| SE 	| SE 	| S 	|
 | 1 	| E 	| SE 	| SE 	| SE 	| SE 	| SE 	| S 	|
-| 2 	| E 	| E 	| E 	| SE 	| SE 	| SE 	| S 	|
-| 3 	| E 	| E 	| E 	| SE 	| SE 	| E 	| .  	|
+| 2 	| E 	| E 	| SE 	| SE 	| SE 	| SE 	| S 	|
+| 3 	| E 	| E 	| SE 	| SE 	| SE 	| E 	| .  	|
 | 4 	| E 	| E 	| E 	| E 	| SE 	| NE 	| N 	|
 | 5 	| E 	| E 	| E 	| E 	| E 	| NE 	| N 	|
 | 6 	| E 	| E 	| E 	| E 	| NE 	| . 	| N 	|
+
+##### 3,0 to 3,6 for Case 2:
+
+* E,  E,  SE, SE, SE, E, .
+
+##### Another 3,0 to 3,6 for Case 2:
+
+* NE, SE, SE, SE, SE, E, .
 
 ### Case III: Strong Wind
 
@@ -104,10 +104,14 @@ Because paths are derived at each cell by pointing towards the highest neighbor 
 | 0 	| SE	| SE 	| S 	| SE 	| SE 	| SE 	| S 	|
 | 1 	| SE 	| SE 	| S 	| SE 	| SE 	| SE	| S 	|
 | 2 	| SE 	| SE 	| S 	| SE 	| SE 	| SE 	| S 	|
-| 3 	| E 	| SE 	| SE 	| SE 	| SE 	| E 	| .  	|
-| 4 	| E 	| E 	| E 	| SE 	| SE 	| NE	| N 	|
-| 5 	| E 	| E 	| E 	| SE 	| SE 	| NE 	| N 	|
+| 3 	| SE 	| SE 	| SE 	| SE 	| SE 	| E 	| .  	|
+| 4 	| E 	| SE 	| SE 	| SE 	| SE 	| NE	| N 	|
+| 5 	| E 	| E 	| SE 	| SE 	| SE 	| NE 	| N 	|
 | 6 	| E 	| E 	| E 	| E 	| E 	| . 	| N 	|
+
+##### 3,0 to 3,6 for Case 3:
+
+* SE, SE, SE, SE, SE, SE
 
 ### Changing the Wind Factor
 

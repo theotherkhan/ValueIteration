@@ -8,7 +8,7 @@ global windFactor
 global FINAL_STATE
 
 ########################################## EDIT THESE ##########################
-windFactor = 2 # set to 0, 1, or 2
+windFactor = 0 # set to 0, 1, or 2
 northerlyWindPattern = (0,0,0,0,0,0,0) #describes where wind factor is active 
 southerlyWindPattern = (0,0,0,1,1,1,0) #note wind is given by the direction it is coming from
 easterlyWindPattern  = (0,0,0,0,0,0,0)
@@ -202,7 +202,7 @@ for i in range(0, bHeight):
 		findUtility(currPos)
 
 
-print ("\n\t~"+"VALUE FUNCTION( (AFTER)~"+"\n",DataFrame(board).to_csv())
+print ("\n\t~"+"VALUE FUNCTION( (AFTER)~"+"\n",DataFrame(board))#.to_csv())
 
 policy = [[""] * bWidth for i in range(bHeight)]
 
