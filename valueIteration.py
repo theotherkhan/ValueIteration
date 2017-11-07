@@ -14,7 +14,7 @@ southerlyWindPattern = (0,0,0,1,1,1,0) #note wind is given by the direction it i
 easterlyWindPattern  = (0,0,0,0,0,0,0)
 westerlyWindPattern  = (0,0,0,0,0,0,0)
 FINAL_STATE = (3,6) # Y, X -- row,col
-SHOW_PLOT = True
+SHOW_PLOT = False
 ################################################################################
 
 global normalDirs 
@@ -151,13 +151,13 @@ def findNeighbors(board, currPos):
 		for check in n:
 			row2,col2 = check
 
-			if northerlyWindPattern[col2] == 1: 
+			if northerlyWindPattern[col] == 1: 
 				row2 = min(bHeight-1, row2+windFactor)	
-			if southerlyWindPattern[col2] == 1:
+			if southerlyWindPattern[col] == 1:
 				row2 = max(0, row2-windFactor)	
-			if easterlyWindPattern [row2] == 1:
+			if easterlyWindPattern [row] == 1:
 				col2 = max(0, col2-windFactor)
-			if westerlyWindPattern [row2] == 1:
+			if westerlyWindPattern [row] == 1:
 				col2 = min(bWidth-1, col2+windFactor)
 			
 			#print(check,"became",(row2,col2))
@@ -202,7 +202,7 @@ for i in range(0, bHeight):
 		findUtility(currPos)
 
 
-print ("\n\t~"+"VALUE FUNCTION( (AFTER)~"+"\n",DataFrame(board))#.to_csv())
+print ("\n\t~"+"VALUE FUNCTION( (AFTER)~"+"\n",DataFrame(board).to_csv())
 
 policy = [[""] * bWidth for i in range(bHeight)]
 

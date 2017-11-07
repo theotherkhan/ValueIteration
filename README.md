@@ -38,12 +38,12 @@
 ##### Value Function:
 |   	| 0    	| 1    	| 2    	| 3    	| 4    	| 5    	| 6    	|
 |---	|------	|------	|------	|------	|------	|------	|------	|
-| 0 	| -6.0 	| -6.0 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -3.0 	|
-| 1 	| -6.0 	| -5.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -2.0 	|
-| 2 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -1.0 	| -1.0 	|
+| 0 	| -6.0 	| -6.0 	| -6.0 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	|
+| 1 	| -6.0 	| -5.0 	| -5.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	|
+| 2 	| -6.0 	| -5.0 	| -4.0 	| -4.0 	| -3.0 	| -2.0 	| -1.0 	|
 | 3 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -1.0 	| 0.0  	|
 | 4 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -1.0 	| -1.0 	|
-| 5 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -2.0 	| -2.0 	|
+| 5 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -1.0 	| -2.0 	|
 | 6 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -2.0 	| -2.0 	|
 
 ##### Gradient Visualization of the Value Function:
@@ -52,32 +52,32 @@
 ##### An Optimal Policy for Case 2:
 |   	| 0    	| 1    	| 2    	| 3    	| 4    	| 5    	| 6    	|
 |---	|------	|------	|------	|------	|------	|------	|------	|
-| 0 	| SE	  | SE 	  | SE 	  | SE 	  | SE 	  | SE 	  | S 	  |
-| 1 	| E 	  | SE 	  | SE 	  | SE 	  | SE 	  | SE 	  | S 	  |
-| 2 	| E 	  | E 	  | SE 	  | SE 	  | SE 	  | SE 	  | S 	  |
-| 3 	| E 	  | E 	  | SE 	  | SE 	  | SE 	  | E 	  | .  	  |
-| 4 	| E 	  | E 	  | E 	  | E 	  | SE 	  | NE 	  | N 	  |
-| 5 	| E 	  | E 	  | E 	  | E 	  | E 	  | NE 	  | N 	  |
-| 6 	| E 	  | E 	  | E 	  | E 	  | NE 	  | NE 	  | N 	  |
+| 0 	| SE 	| SE 	| SE 	| SE	| SE 	| SE 	| S 	|
+| 1 	| E 	| SE	| SE 	| SE 	| SE 	| SE 	| S 	|
+| 2 	| E 	| E 	| SE 	| SE 	| SE 	| SE 	| S 	|
+| 3 	| E 	| E 	| E 	| SE 	| SE 	| SE 	| 0.0  	|
+| 4 	| E 	| E 	| E 	| E 	| E 	| E 	| N 	|
+| 5 	| E 	| E 	| E 	| E 	| E 	| NE 	| N 	|
+| 6 	| E 	| E 	| E 	| E 	| E 	| E 	| N 	|
 
 ##### 3,0 to 3,6 for Case 2:
-* ((3,0):E), ((3,1):E), ((3:2):SE), ((3,3):SE), ((3,4):SE), ((3,5):E), ((3,6):.)
+* ((3,0):E), ((3,1):E), ((3:2):E), ((3,3):SE), ((3,4):SE), ((3,5):SE), ((3,6):.)
 
 ##### Another 3,0 to 3,6 for Case 2:
-* ((3,0):NE), ((2,1):SE), ((3:2):SE), ((3,3):SE), ((3,4):SE), ((3,5):E), ((3,6):.)
+* ((3,0):NE), ((2,1):SE), ((3:2):E), ((3,3):SE), ((3,4):SE), ((3,5):SE), ((3,6):.)
 
 ### Case III: Strong Wind
 
 ##### Value Function:
 |   	| 0    	| 1    	| 2    	| 3    	| 4    	| 5    	| 6    	|
 |---	|------	|------	|------	|------	|------	|------	|------	|
-| 0 	| -8.0 	| -7.0 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -3.0 	|
-| 1 	| -8.0 	| -7.0 	| -6.0 	| -5.0 	| -4.0 	| -2.0 	| -2.0 	|
-| 2 	| -7.0 	| -7.0 	| -6.0 	| -5.0 	| -3.0 	| -1.0 	| -1.0 	|
-| 3 	| -6.0 	| -6.0 	| -6.0 	| -4.0 	| -2.0 	| -1.0 	| 0.0  	|
-| 4 	| -6.0 	| -5.0 	| -5.0 	| -3.0 	| -2.0 	| -1.0 	| -1.0 	|
-| 5 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -2.0 	| -2.0 	|
-| 6 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -2.0 	| -2.0 	|
+| 0 	| -9.0 	| -8.0 	| -7.0 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	|
+| 1 	| -8.0 	| -8.0 	| -7.0 	| -6.0 	| -5.0 	| -4.0 	| -2.0 	|
+| 2 	| -7.0 	| -7.0 	| -7.0 	| -6.0 	| -5.0 	| -3.0 	| -1.0 	|
+| 3 	| -7.0 	| -6.0 	| -6.0 	| -6.0 	| -4.0 	| -2.0 	| 0.0  	|
+| 4 	| -7.0 	| -6.0 	| -5.0 	| -5.0 	| -3.0 	| -1.0 	| -1.0 	|
+| 5 	| -7.0 	| -6.0 	| -5.0 	| -4.0 	| -2.0 	| -1.0 	| -2.0 	|
+| 6 	| -7.0 	| -6.0 	| -5.0 	| -4.0 	| -2.0 	| -1.0 	| -2.0 	|
 
 ##### Gradient Visualization of the Value Function:
 ![alt text](Figure_3.png)
@@ -86,17 +86,17 @@
 
 |   	| 0    	| 1    	| 2    	| 3    	| 4    	| 5    	| 6    	|
 |---	|------	|------	|------	|------	|------	|------	|------	|
-| 0 	| SE	| SE 	| S 	| SE 	| SE 	| SE 	| S 	|
-| 1 	| SE 	| SE 	| S 	| SE 	| SE 	| SE	| S 	|
-| 2 	| SE 	| SE 	| S 	| SE 	| SE 	| SE 	| S 	|
-| 3 	| SE 	| SE 	| SE 	| SE 	| SE 	| E 	| .  	|
-| 4 	| E 	| SE 	| SE 	| SE 	| SE 	| NE	| N 	|
-| 5 	| E 	| E 	| SE 	| SE 	| SE 	| NE 	| N 	|
-| 6 	| E 	| E 	| E 	| E 	| E 	| . 	| N 	|
+| 0 	| SE 	| SE 	| SE 	| SE 	| SE 	| SE 	| S 	|
+| 1 	| SE 	| SE	| SE 	| SE 	| SE 	| SE 	| S 	|
+| 2 	| SE 	| SE 	| SE 	| SE 	| SE	| SE 	| S 	|
+| 3 	| SE 	| SE 	| SE 	| SE 	| SE 	| SE 	| 0.0  	|
+| 4 	| E 	| SE	| SE 	| SE 	| SE 	| SE 	| N 	|
+| 5 	| E 	| E 	| SE	| SE 	| SE 	| E 	| N 	|
+| 6 	| E 	| E 	| E 	| E 	| E 	| NE 	| N 	|
 
 ##### 3,0 to 3,6 for Case 3:
 
-* ((3,0):SE), ((4,1):SE), ((5:2):SE), ((4,3):SE), ((3,4):SE), ((2,5):SE), ((3,6):.)
+* ((3,0):SE), ((4,1):SE), ((5:2):SE), ((6,3):E), ((4,4):SE), ((3,5):SE), ((2,6):S, ((3,6):.)
 
 ### Changing the Wind Factor
 
@@ -104,6 +104,10 @@ To modify the wind factor (0 for none, 1 for 1 offset, 2 for 2, etc...), open va
 
 ##### Some General Notes:
 * for policies, the actions to be taken are given in cardinal directions N, S, E, W, NE, SE, NW, and SW. A period . means stay.
+* if you want to see the plots, feel free to turn SHOW_PLOT on
+* you should also be able to change the FINAL_STATE this way if you want
+* all coordinates are given in (row, col) fashion
+* we assume that if you are in a column with wind and you move into a column without wind, that the wind affected you before the move. In other words, with you and the wind being players in a game, you select an action, the wind offsets you, and then your action is performed
 
 ### Compilation and Run
 
