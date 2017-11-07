@@ -63,6 +63,10 @@ Because paths are derived at each cell by pointing towards the highest neighbor 
 | 05 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -1.0 	| -2.0 	|
 | 06 	| -6.0 	| -5.0 	| -4.0 	| -3.0 	| -2.0 	| -2.0 	| -2.0 	|
 
+##### Gradiant Visualization of the Value Function:
+
+![alt text](Figure_2.png)
+
 ##### Policy for Case 2:
 
 |   	| 00    | 01    | 02    | 03    | 04    | 05    | 06    |

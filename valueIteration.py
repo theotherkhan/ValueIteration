@@ -8,7 +8,7 @@ global windFactor
 global FINAL_STATE
 
 ########################################## EDIT THESE ##########################
-windFactor = 0 # set to 0, 1, or 2
+windFactor = 1 # set to 0, 1, or 2
 northerlyWindPattern = (0,0,0,0,0,0,0) #describes where wind factor is active 
 southerlyWindPattern = (0,0,0,1,1,1,0) #note wind is given by the direction it is coming from
 easterlyWindPattern  = (0,0,0,0,0,0,0)
