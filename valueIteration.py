@@ -207,7 +207,7 @@ for i in range (0, len(board)):
 		policy[i][j] = direction
 
 policy[FINAL_STATE[0]][FINAL_STATE[1]] = "+"
-print ("\n\t"+"~OPTIMAL POLICY ATTEMPT~"+"\n", DataFrame(policy))#.to_csv())
+#print ("\n\t"+"~OPTIMAL POLICY ATTEMPT~"+"\n", DataFrame(policy))#.to_csv())
 
 if(SHOW_PLOT == True):
 	drawPlot(np.array(board))
